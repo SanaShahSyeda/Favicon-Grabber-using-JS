@@ -1,28 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Favicon Grabber</title>
-</head>
-<body>
+  </head>
+  <body>
+    <script>
+      function isValidURL(string) {
+        var res = string.match(
+          /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+        );
+        return res !== null;
+      }
+
+      function startIT() {
+        var myurl = document.getElementById("urltext").value;
+
+        if (myurl == "") {
+          alert("Please Enter URL");
+        } else if (myurl !== "" && isValidURL(myurl) == true) {
+          grabFAV();
+        } else {
+          alert("Please Enter Valid URL");
+        }
+      }
+
+      function grabFAV() {
+        var myurl = document.getElementById("urltext").value;
+        var myimg = document.getElementById("theimg");
+        var mysize = document.getElementById("size").value;
+        var duckapi = "https://icons.duckduckgo.com/ip3/";
+        var gapi = "https://s2.googleusercontent.com/s2/favicons?domain=";
+        if (mysize == "default") {
+          var h1 = "https://";
+          var h2 = "http://";
+
+          myurl = myurl.replace(h1, "");
+          myurl = myurl.replace(h2, "");
+
+          myimg.src = duckapi + myurl + ".ico";
+        } else if (mysize == "16") {
+          myimg.src = gapi + myurl + "&sz=16";
+        } else if (mysize == "32") {
+          myimg.src = gapi + myurl + "&sz=32";
+        } else if (mysize == "48") {
+          myimg.src = gapi + myurl + "&sz=48";
+        } else if (mysize == "64") {
+          myimg.src = gapi + myurl + "&sz=64";
+        } else if (mysize == "128") {
+          myimg.src = gapi + myurl + "&sz=128";
+        }
+      }
+    </script>
     <div class="grid">
-        <h2>Favicon Grabber</h2>
-        <img id="the-img" src="" alt="">
-        <br>
-        <select name="" id="size">
-            <option value="Default">Default </option>
-            <option value="16">16x16</option> 
-            <option value="32">32x32</option> 
-            <option value="48">48x48</option> 
-            <option value="64">64x64</option>
-            <option value="128">128x128</option> 
-        </select>
-        <br><br>
-        <input type="text"  placeholder="Enter URL..." name="" id="url-text">
-        <input id="submit-btn" type="submit" value="Grab">
+      <h2>Favicon Grabber</h2>
+      <center>
+        <img src id="theimg">
+      </center>
+      <br />
+      <select id="size">
+        <option value="default">Default</option>
+        <option value="16">16x16</option>
+        <option value="32">32x32</option>
+        <option value="48">48x48</option>
+        <option value="64">64x64</option>
+        <option value="128">128x128</option>
+      </select>
+      <br /><br />
+      <input type="text" placeholder="Enter URL..." id="urltext">
+      <input id="submit-btn" type="submit" value="Grab" onclick="startIT()">
     </div>
-</body>
-<script src="main.js"></script>
+  </body>
+  <script src="main.js"></script>
 </html>
