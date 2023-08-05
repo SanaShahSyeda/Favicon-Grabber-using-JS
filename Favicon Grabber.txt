@@ -1,0 +1,13 @@
+=> Favicon / website icon / tab icon / shortcut icon.
+
+=> Extensions: .ico & .png
+
+=> Size: 16x16 or 32x32.
+
+=> Why favicon --> 
+SEO- search engine optimization.
+Easy identification.
+
+=> DuckDuckGo API.
+
+=> Google's API.
